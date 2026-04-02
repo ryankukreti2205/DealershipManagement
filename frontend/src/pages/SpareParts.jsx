@@ -33,28 +33,21 @@ const SpareParts = () => {
             ) : parts.length === 0 ? (
                 <div className="text-center py-20"><p className="text-2xl text-gray-500 uppercase tracking-widest">No parts available currently.</p></div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {parts.map(part => (
-                        <div key={part._id} className="card group bg-[#161616] p-4 flex flex-col justify-between">
+                        <div key={part._id} className="card bg-[#161616] p-6 flex flex-col justify-between border border-gray-800 rounded-lg hover:border-gray-600 transition-colors">
                             <div>
-                                <div className="h-48 overflow-hidden rounded mb-4 bg-[#111]">
-                                    {part.image ? (
-                                        <img src={part.image} alt={part.name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-gray-600 font-heading">No Image</div>
-                                    )}
-                                </div>
-                                <h3 className="text-lg font-bold font-heading mb-2 text-white">{part.name}</h3>
+                                <h3 className="text-xl font-bold font-heading mb-2 text-white">{part.name}</h3>
                                 {part.stock > 0 ? (
-                                    <p className="text-sm text-green-500 mb-2">In Stock ({part.stock})</p>
+                                    <p className="text-sm font-semibold text-green-500 mb-4">In Stock ({part.stock})</p>
                                 ) : (
-                                    <p className="text-sm text-triumph-red mb-2">Out of Stock</p>
+                                    <p className="text-sm font-semibold text-triumph-red mb-4">Out of Stock</p>
                                 )}
                             </div>
-                            <div className="flex justify-between items-center mt-4 border-t border-gray-800 pt-4">
-                                <p className="text-triumph-red font-bold text-xl">₹{part.price?.toLocaleString('en-IN')}</p>
-                                <button className={`btn-primary px-4 py-2 text-sm ${part.stock === 0 && 'opacity-50 cursor-not-allowed'}`} disabled={part.stock === 0}>
-                                    Buy Now
+                            <div className="flex justify-between items-center border-t border-gray-800 border-opacity-50 pt-4 mt-2">
+                                <p className="text-triumph-red font-bold text-2xl">₹{part.price?.toLocaleString('en-IN')}</p>
+                                <button className={`btn-primary px-4 py-2 text-sm uppercase tracking-wider rounded-md ${part.stock === 0 && 'opacity-50 cursor-not-allowed'}`} disabled={part.stock === 0}>
+                                    Buy
                                 </button>
                             </div>
                         </div>
